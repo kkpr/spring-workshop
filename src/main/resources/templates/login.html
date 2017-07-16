@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>Spring Security Example </title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.css" />
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script th:src="@{/webjars/jquery-ui/jquery-ui.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</head>
+<body>
+<div id="mainWrapper">
+    <div class="login-container">
+        <div class="login-card">
+            <div class="login-form">
+                <form th:action="@{/login}" method="post">
+                    <div th:if="${param.error}">
+                        <div class="alert alert-danger">
+                            <p>Invalid username and password.</p>
+                        </div>
+                    </div>
+                    <div th:if="${param.logout}">
+                        <div class="alert alert-success">
+                            <p>You have been logged out successfully.</p>
+                        </div>
+                    </div>
+                    <div class="input-group input-sm">
+                        <label class="input-group-addon" for="username"><i class="fa fa-user"></i></label>
+                        <input type="text" class="form-control" id="username" name="ssoId" placeholder="Enter Username" required="true"/>
+                    </div>
+                    <div class="input-group input-sm">
+                        <label class="input-group-addon" for="password"><i class="fa fa-lock"></i></label>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password" required="true"/>
+                    </div>
+                    <div class="input-group input-sm">
+                        <div class="checkbox">
+                            <label><input type="checkbox" id="rememberme" name="remember-me"/> Remember Me</label>
+                        </div>
+                    </div>
+                    <input type="hidden" name="${_csrf.parameterName}"  value="${_csrf.token}" />
+
+                    <div class="form-actions">
+                        <input type="submit"
+                               class="btn btn-block btn-primary btn-default" value="Log in"/>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
