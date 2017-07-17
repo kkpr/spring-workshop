@@ -7,6 +7,7 @@ import javax.persistence.*;
 /**
  * Created by KrishnaPrasad on 16/07/2017.
  */
+@Entity
 public class CandidateIdentification extends BaseEntity{
 
     @ManyToOne

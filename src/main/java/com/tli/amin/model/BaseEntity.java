@@ -1,33 +1,76 @@
 package com.tli.amin.model;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
-import java.io.Serializable;
+import org.springframework.data.jpa.domain.AbstractPersistable;
+import org.springframework.util.Assert;
+
+import javax.persistence.*;
+import java.util.Date;
+import java.util.UUID;
 
 /**
- * Simple JavaBean domain object with an id property. Used as a base class for objects
- * needing this property.
+ * Simple JavaBean domain object. Base class for all JPA Entities.
  *
  *@author KrishnaPrasad
  */
 @MappedSuperclass
-public class BaseEntity implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+public abstract class BaseEntity extends AbstractPersistable<Long> {
 
-    public Integer getId() {
-        return id;
+    /**
+     *  All objects will have a unique UUID which allows for the decoupling from DB generated ids
+     *
+     */
+    @Column(length=36)
+    private String uuid;
+
+    @Version
+    private int version;
+
+    private Date timeCreated;
+
+    public BaseEntity() {
+        this(UUID.randomUUID());
+    }
+    public BaseEntity(UUID guid) {
+        Assert.notNull(guid, "UUID is required");
+        setUuid(guid.toString());
+        this.timeCreated = new Date();
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public UUID getUuid() {
+        return UUID.fromString(uuid);
     }
 
-    public boolean isNew() {
-        return this.id == null;
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
+
+    public int hashCode() {
+        return getUuid().hashCode();
+    }
+
+    /**
+     * In most instances we can rely on the UUID to identify the object.
+     * Subclasses may want a user friendly identifier for constructing easy to read urls
+     *
+     * <code>
+     *    /user/1883c578-76be-47fb-a5c1-7bbea3bf7fd0 using uuid as the identifier
+     *
+     *    /user/jsmith using the username as the identifier
+     *
+     * </code>
+     *
+     * @return Object unique identifier for the object
+     */
+    public Object getIdentifier() {
+        return getUuid().toString();
+    }
+
+    public int getVersion() {
+        return version;
+    }
+
+    public Date getTimeCreated() {
+        return timeCreated;
     }
 
 }

@@ -1,6 +1,7 @@
 package com.tli.amin.company;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -40,7 +41,15 @@ public class Company extends BaseEntity{
 	@NotEmpty
 	@Column(name="COUNTRY", nullable=false)
 	private String country;
-	
+
+	private String profileDescription;
+
+	private BusinessStream businessStream;
+
+	private Date establishmentDate;
+
+	private String companyWebsiteUrl;
+
 	@NotNull
 	@Column(name="YEARLY_HIRING_NO", nullable=false)
 	private int yearlyHiringNo;
@@ -100,6 +109,36 @@ public class Company extends BaseEntity{
 	public void setYearlyHiringNo(int yearlyHiringNo) {
 		this.yearlyHiringNo = yearlyHiringNo;
 	}
-	
-	
+
+	public String getProfileDescription() {
+		return profileDescription;
+	}
+
+	public void setProfileDescription(String profileDescription) {
+		this.profileDescription = profileDescription;
+	}
+
+	public BusinessStream getBusinessStream() {
+		return businessStream;
+	}
+
+	public void setBusinessStream(BusinessStream businessStream) {
+		this.businessStream = businessStream;
+	}
+
+	public Date getEstablishmentDate() {
+		return establishmentDate;
+	}
+
+	public void setEstablishmentDate(Date establishmentDate) {
+		this.establishmentDate = establishmentDate;
+	}
+
+	public String getCompanyWebsiteUrl() {
+		return companyWebsiteUrl;
+	}
+
+	public void setCompanyWebsiteUrl(String companyWebsiteUrl) {
+		this.companyWebsiteUrl = companyWebsiteUrl;
+	}
 }

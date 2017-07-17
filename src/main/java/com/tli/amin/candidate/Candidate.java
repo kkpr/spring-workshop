@@ -18,13 +18,18 @@ public class Candidate extends BaseEntity {
     private String firstName;
     private String lastName;
     private String middleName;
-    private String contactNumberOne;
-    private String getContactNumberTwo;
+    private String fatherName;
+    private String contactNumber;
+    private String alternateContactNumber;
     private String emailId;
 
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "candidate")
     @JsonManagedReference
     private Set<CandidateIdentification> candidateIdentifications;
+
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "candidate")
+    @JsonManagedReference
+    private Set<CandidateJobOffer> candidateJobOffers;
 
     public Candidate() {
     }
@@ -53,20 +58,20 @@ public class Candidate extends BaseEntity {
         this.middleName = middleName;
     }
 
-    public String getContactNumberOne() {
-        return contactNumberOne;
+    public String getContactNumber() {
+        return contactNumber;
     }
 
-    public void setContactNumberOne(String contactNumberOne) {
-        this.contactNumberOne = contactNumberOne;
+    public void setContactNumber(String contactNumber) {
+        this.contactNumber = contactNumber;
     }
 
-    public String getGetContactNumberTwo() {
-        return getContactNumberTwo;
+    public String getAlternateContactNumber() {
+        return alternateContactNumber;
     }
 
-    public void setGetContactNumberTwo(String getContactNumberTwo) {
-        this.getContactNumberTwo = getContactNumberTwo;
+    public void setAlternateContactNumber(String alternateContactNumber) {
+        this.alternateContactNumber = alternateContactNumber;
     }
 
     public String getEmailId() {
@@ -77,6 +82,14 @@ public class Candidate extends BaseEntity {
         this.emailId = emailId;
     }
 
+    public String getFatherName() {
+        return fatherName;
+    }
+
+    public void setFatherName(String fatherName) {
+        this.fatherName = fatherName;
+    }
+
     public Set<CandidateIdentification> getCandidateIdentifications() {
         return candidateIdentifications;
     }
@@ -84,4 +97,6 @@ public class Candidate extends BaseEntity {
     public void setCandidateIdentifications(Set<CandidateIdentification> candidateIdentifications) {
         this.candidateIdentifications = candidateIdentifications;
     }
+
+
 }

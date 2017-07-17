@@ -50,13 +50,13 @@ public class UserController {
 	@RequestMapping(value = "/user", method = RequestMethod.GET)
     public String userPage(ModelMap model) {
         model.addAttribute("user", getPrincipal());
-        return "company/welcome";
+        return "welcome";
     }
 	
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
     public String adminPage(ModelMap model) {
         model.addAttribute("user", getPrincipal());
-        return "admin/admin";
+        return "admin";
     }
 
 
@@ -82,7 +82,7 @@ public class UserController {
 		model.addAttribute("user", user);
 		model.addAttribute("edit", false);
 		model.addAttribute("loggedinuser", getPrincipal());
-		return "users/registration";
+		return "user/registration";
 	}
 
 	/**
