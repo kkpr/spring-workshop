@@ -4,13 +4,13 @@ import com.tli.amin.company.CompanyJobOffer;
 import com.tli.amin.model.BaseEntity;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.util.*;
 
 /**
  * Created by KrishnaPrasad on 17/07/2017.
  */
 @Entity
-public class CandidateJobOffer extends BaseEntity {
+public class CandidateOffer extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "candidate_id")
@@ -21,7 +21,7 @@ public class CandidateJobOffer extends BaseEntity {
 
     private Date offerDate;
 
-    public CandidateJobOffer() {
+    public CandidateOffer() {
     }
 
     public Candidate getCandidate() {

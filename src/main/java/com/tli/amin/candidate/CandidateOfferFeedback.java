@@ -1,6 +1,5 @@
 package com.tli.amin.candidate;
 
-import com.tli.amin.company.JobMotive;
 import com.tli.amin.model.BaseEntity;
 
 import javax.persistence.*;
@@ -14,7 +13,7 @@ public class CandidateOfferFeedback extends BaseEntity{
 
     @ManyToOne
     @JoinColumn(name = "candidate_job_offer_id")
-    private CandidateJobOffer candidateJobOffer;
+    private CandidateOffer candidateJobOffer;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "feedback_type")
@@ -22,11 +21,11 @@ public class CandidateOfferFeedback extends BaseEntity{
     private Date feedbackDate;
     private FeedbackResponse feedbackResponse;
 
-    public CandidateJobOffer getCandidateJobOffer() {
+    public CandidateOffer getCandidateJobOffer() {
         return candidateJobOffer;
     }
 
-    public void setCandidateJobOffer(CandidateJobOffer candidateJobOffer) {
+    public void setCandidateJobOffer(CandidateOffer candidateJobOffer) {
         this.candidateJobOffer = candidateJobOffer;
     }
 

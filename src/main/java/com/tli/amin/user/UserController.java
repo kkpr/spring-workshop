@@ -46,6 +46,8 @@ public class UserController {
 	
 	@Autowired
 	AuthenticationTrustResolver authenticationTrustResolver;
+
+
 	
 	@RequestMapping(value = "/user", method = RequestMethod.GET)
     public String userPage(ModelMap model) {

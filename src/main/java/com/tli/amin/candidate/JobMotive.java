@@ -1,4 +1,4 @@
-package com.tli.amin.company;
+package com.tli.amin.candidate;
 
 import com.tli.amin.model.BaseEntity;
 

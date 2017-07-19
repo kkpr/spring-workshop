@@ -18,7 +18,7 @@ public class UserServiceImpl implements UserService{
 	@Autowired
     private PasswordEncoder passwordEncoder;
 	
-	public User findById(int id) {
+	public User findById(Long id) {
 		return userRepository.findOne(id);
 	}
 
@@ -60,7 +60,7 @@ public class UserServiceImpl implements UserService{
 		return userRepository.findAll();
 	}
 
-	public boolean isUserSSOUnique(Integer id, String sso) {
+	public boolean isUserSSOUnique(Long id, String sso) {
 		User user = findBySSO(sso);
 		return ( user == null || ((id != null) && (user.getId() == id)));
 	}

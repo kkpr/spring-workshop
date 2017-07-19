@@ -15,10 +15,10 @@ import java.util.Set;
 @Entity
 public class Candidate extends BaseEntity {
 
-    private String firstName;
-    private String lastName;
-    private String middleName;
-    private String fatherName;
+    private String firstname;
+    private String middlename;
+    private String lastname;
+    private String fathername;
     private String contactNumber;
     private String alternateContactNumber;
     private String emailId;
@@ -27,35 +27,39 @@ public class Candidate extends BaseEntity {
     @JsonManagedReference
     private Set<CandidateIdentification> candidateIdentifications;
 
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "candidate")
-    @JsonManagedReference
-    private Set<CandidateJobOffer> candidateJobOffers;
-
     public Candidate() {
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getMiddlename() {
+        return middlename;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setMiddlename(String middlename) {
+        this.middlename = middlename;
     }
 
-    public String getMiddleName() {
-        return middleName;
+    public String getLastname() {
+        return lastname;
     }
 
-    public void setMiddleName(String middleName) {
-        this.middleName = middleName;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public String getFathername() {
+        return fathername;
+    }
+
+    public void setFathername(String fathername) {
+        this.fathername = fathername;
     }
 
     public String getContactNumber() {
@@ -80,14 +84,6 @@ public class Candidate extends BaseEntity {
 
     public void setEmailId(String emailId) {
         this.emailId = emailId;
-    }
-
-    public String getFatherName() {
-        return fatherName;
-    }
-
-    public void setFatherName(String fatherName) {
-        this.fatherName = fatherName;
     }
 
     public Set<CandidateIdentification> getCandidateIdentifications() {

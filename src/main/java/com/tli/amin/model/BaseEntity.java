@@ -44,6 +44,7 @@ public abstract class BaseEntity extends AbstractPersistable<Long> {
         this.uuid = uuid;
     }
 
+    @Override
     public int hashCode() {
         return getUuid().hashCode();
     }

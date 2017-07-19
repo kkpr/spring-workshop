@@ -1,5 +1,8 @@
 package com.tli.amin.user;
 
+import com.fasterxml.jackson.databind.ser.Serializers;
+import com.tli.amin.model.BaseEntity;
+
 import java.io.Serializable;
 
 import javax.persistence.Column;
@@ -17,42 +20,22 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="USER_PROFILE")
-public class UserProfile implements Serializable{
+public class UserProfile extends BaseEntity{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -2233376931908016052L;
 
-	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer id;	
-
 	@Column(name="TYPE", length=15, unique=true, nullable=false)
 	private String type = UserProfileType.USER.getUserProfileType();
 	
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
 	public String getType() {
 		return type;
 	}
 
 	public void setType(String type) {
 		this.type = type;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((type == null) ? 0 : type.hashCode());
-		return result;
 	}
 
 	@Override
@@ -64,10 +47,10 @@ public class UserProfile implements Serializable{
 		if (!(obj instanceof UserProfile))
 			return false;
 		UserProfile other = (UserProfile) obj;
-		if (id == null) {
-			if (other.id != null)
+		if (getId() == null) {
+			if (other.getId() != null)
 				return false;
-		} else if (!id.equals(other.id))
+		} else if (!getId().equals(other.getId()))
 			return false;
 		if (type == null) {
 			if (other.type != null)
@@ -79,7 +62,7 @@ public class UserProfile implements Serializable{
 
 	@Override
 	public String toString() {
-		return "UserProfile [id=" + id + ", type=" + type + "]";
+		return "UserProfile [id=" + getId() + ", type=" + type + "]";
 	}
 
 }

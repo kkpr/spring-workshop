@@ -20,6 +20,8 @@ public class CandidateIdentification extends BaseEntity{
 
     private String identificationNumber;
 
+    private String identificationFilepath;
+
     public Candidate getCandidate() {
         return candidate;
     }
@@ -42,5 +44,13 @@ public class CandidateIdentification extends BaseEntity{
 
     public void setIdentificationNumber(String identificationNumber) {
         this.identificationNumber = identificationNumber;
+    }
+
+    public String getIdentificationFilepath() {
+        return identificationFilepath;
+    }
+
+    public void setIdentificationFilepath(String identificationFilepath) {
+        this.identificationFilepath = identificationFilepath;
     }
 }

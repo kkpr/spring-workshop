@@ -3,16 +3,12 @@ package com.tli.amin.company;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 import com.tli.amin.model.BaseEntity;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name="COMPANY")
@@ -46,6 +42,12 @@ public class Company extends BaseEntity{
 
 	private BusinessStream businessStream;
 
+	/**
+	 * Holds value of property date.
+	 */
+	@Column(name = "establishment_date")
+	@Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern = "yyyy/MM/dd")
 	private Date establishmentDate;
 
 	private String companyWebsiteUrl;
@@ -141,4 +143,22 @@ public class Company extends BaseEntity{
 	public void setCompanyWebsiteUrl(String companyWebsiteUrl) {
 		this.companyWebsiteUrl = companyWebsiteUrl;
 	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof Company)) return false;
+		if (!super.equals(o)) return false;
+
+		Company company = (Company) o;
+		if (!getUuid().equals(company.getUuid())) return false;
+		if (!getCompanyName().equals(company.getCompanyName())) return false;
+		if (!getCity().equals(company.getCity())) return false;
+		if (!getState().equals(company.getState())) return false;
+		if (!getCountry().equals(company.getCountry())) return false;
+		if (getEstablishmentDate() != null ? !getEstablishmentDate().equals(company.getEstablishmentDate()) : company.getEstablishmentDate() != null)
+			return false;
+		return getCompanyWebsiteUrl() != null ? getCompanyWebsiteUrl().equals(company.getCompanyWebsiteUrl()) : company.getCompanyWebsiteUrl() == null;
+	}
+
 }

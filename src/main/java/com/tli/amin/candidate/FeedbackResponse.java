@@ -1,7 +1,5 @@
 package com.tli.amin.candidate;
 
-import com.tli.amin.company.JobMotive;
-
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
