@@ -2,10 +2,7 @@ package com.tli.amin.company;
 
 import com.tli.amin.model.BaseEntity;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.*;
 
 /**
@@ -14,7 +11,8 @@ import java.util.*;
 @Entity
 public class CompanyJobOffer extends BaseEntity {
 
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "company")
+    @ManyToOne
+    @JoinColumn(name = "company_id")
     private Company company;
     private Long jobRefNumber;
     private String jobTitle;

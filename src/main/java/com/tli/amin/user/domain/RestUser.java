@@ -13,13 +13,13 @@ import java.util.*;
 
 
 /**
-* User: porter
+* RestUser: porter
 * Date: 09/03/2012
 * Time: 18:56
 */
 @Entity
 @Table(name="rest_user")
-public class User extends BaseEntity {
+public class RestUser extends BaseEntity {
 
      /**
      * Add additional salt to password hashing
@@ -37,24 +37,24 @@ public class User extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @OneToMany(mappedBy="user",
+    @OneToMany(mappedBy="restUser",
                  targetEntity=VerificationToken.class,
                  cascade= CascadeType.ALL)
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<VerificationToken> verificationTokens = new ArrayList<VerificationToken>();
 
     @OneToOne(fetch = FetchType.LAZY,
-            mappedBy = "user",
+            mappedBy = "restUser",
             cascade = CascadeType.ALL)
     private AuthorizationToken authorizationToken;
 
-    public User() {
+    public RestUser() {
         this(UUID.randomUUID());
     }
 
-    public User(UUID uuid) {
+    public RestUser(UUID uuid) {
         super(uuid);
-        setRole(Role.anonymous); //all users are anonymous until credentials are proved
+        setRole(Role.anonymous); //all user are anonymous until credentials are proved
     }
 
     public void setHashedPassword(String hashedPassword) {
@@ -108,11 +108,11 @@ public class User extends BaseEntity {
         if(otherUser == null) {
             response = false;
         }
-        else if(! (otherUser instanceof User)) {
+        else if(! (otherUser instanceof RestUser)) {
             response = false;
         }
         else {
-            if(((User)otherUser).getUuid().equals(this.getUuid())) {
+            if(((RestUser)otherUser).getUuid().equals(this.getUuid())) {
                 response = true;
             }
         }
@@ -151,7 +151,7 @@ public class User extends BaseEntity {
     }
 
     /**
-     * If the user has a VerificationToken of type VerificationTokenType.lostPassword
+     * If the restUser has a VerificationToken of type VerificationTokenType.lostPassword
      * that is active return it otherwise return null
      *
      * @return verificationToken
@@ -161,7 +161,7 @@ public class User extends BaseEntity {
     }
 
     /**
-     * If the user has a VerificationToken of type VerificationTokenType.emailVerification
+     * If the restUser has a VerificationToken of type VerificationTokenType.emailVerification
      * that is active return it otherwise return null
      *
      * @return verificationToken
@@ -171,7 +171,7 @@ public class User extends BaseEntity {
     }
 
     /**
-     * If the user has a VerificationToken of type VerificationTokenType.emailRegistration
+     * If the restUser has a VerificationToken of type VerificationTokenType.emailRegistration
      * that is active return it otherwise return null
      *
      * @return verificationToken

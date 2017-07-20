@@ -14,15 +14,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
 	void deleteBySsoId(String sso);
 
-	User findByEmailAddress(String emailAddress);
+	User findByEmail(String email);
 
-	@Query("select u from User u where uuid = ?")
-	User findByUuid(String uuid);
-
-	@Query("select u from User u where u in (select user from AuthorizationToken where lastUpdated < ?)")
-	List<User> findByExpiredSession(Date lastUpdated);
-
-	@Query("select u from User u where u = (select user from AuthorizationToken where token = ?)")
-	User findBySession(String token);
 }
 

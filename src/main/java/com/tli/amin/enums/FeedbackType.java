@@ -1,4 +1,4 @@
-package com.tli.amin.candidate;
+package com.tli.amin.enums;
 
 /**
  * Created by KrishnaPrasad on 17/07/2017.

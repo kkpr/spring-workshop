@@ -1,6 +1,7 @@
 package com.tli.amin.company;
 
 import com.tli.amin.candidate.*;
+import com.tli.amin.enums.IdentificationType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +20,7 @@ public class CompanyServiceImpl implements CompanyService{
     private CompanyJobsRepository companyJobOfferRepository;
 
     @Autowired
-    private CandidateJobOfferRepository candidateJobOfferRepository;
+    private CandidateOfferRepository candidateJobOfferRepository;
 
     @Autowired
     private CandidateRepository candidateRepository;

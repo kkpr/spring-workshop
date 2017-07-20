@@ -41,14 +41,14 @@ public class LoginController {
 
 	/**
 	 * This method handles login GET requests.
-	 * If users is already logged-in and tries to goto login page again, will be redirected to list page.
+	 * If user is already logged-in and tries to goto login page again, will be redirected to list page.
 	 */
 	@RequestMapping(value = "/login")
 	public String loginPage() {
 		if (isCurrentAuthenticationAnonymous()) {
 			return "login";
 	    } else {
-	    	return "redirect:/users/list";  
+	    	return "redirect:/user/list";
 	    }
 	}
 	

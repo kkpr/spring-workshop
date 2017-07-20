@@ -1,9 +1,13 @@
 package com.tli.amin.candidate;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.tli.amin.enums.FeedbackType;
 import com.tli.amin.model.BaseEntity;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 /**
  * Created by KrishnaPrasad on 17/07/2017.
@@ -12,21 +16,27 @@ import java.util.Date;
 public class CandidateOfferFeedback extends BaseEntity{
 
     @ManyToOne
-    @JoinColumn(name = "candidate_job_offer_id")
-    private CandidateOffer candidateJobOffer;
+    @JoinColumn(name = "candidate_offer_id")
+    private CandidateOffer candidateOffer;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "feedback_type")
     private FeedbackType feedbackType;
-    private Date feedbackDate;
-    private FeedbackResponse feedbackResponse;
 
-    public CandidateOffer getCandidateJobOffer() {
-        return candidateJobOffer;
+    @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "yyyy/MM/dd")
+    private Date feedbackDate;
+
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "candidateOfferFeedback")
+    @JsonManagedReference
+    private Set<FeedbackResponse> feedbackResponses;
+
+    public CandidateOffer getCandidateOffer() {
+        return candidateOffer;
     }
 
-    public void setCandidateJobOffer(CandidateOffer candidateJobOffer) {
-        this.candidateJobOffer = candidateJobOffer;
+    public void setCandidateOffer(CandidateOffer candidateOffer) {
+        this.candidateOffer = candidateOffer;
     }
 
     public FeedbackType getFeedbackType() {
@@ -45,11 +55,11 @@ public class CandidateOfferFeedback extends BaseEntity{
         this.feedbackDate = feedbackDate;
     }
 
-    public FeedbackResponse getFeedbackResponse() {
-        return feedbackResponse;
+    public Set<FeedbackResponse> getFeedbackResponses() {
+        return feedbackResponses;
     }
 
-    public void setFeedbackResponse(FeedbackResponse feedbackResponse) {
-        this.feedbackResponse = feedbackResponse;
+    public void setFeedbackResponses(Set<FeedbackResponse> feedbackResponses) {
+        this.feedbackResponses = feedbackResponses;
     }
 }

@@ -9,8 +9,8 @@ import java.util.Date;
 import java.util.UUID;
 
 /**
- * A token that gives the user permission to carry out a specific task once within a determined time period.
- * An example would be a Lost Password token. The user receives the token embedded in a link.
+ * A token that gives the restUser permission to carry out a specific task once within a determined time period.
+ * An example would be a Lost Password token. The restUser receives the token embedded in a link.
  * They send the token back to the server by clicking the link and the action is processed
  *
  * @version 1.0
@@ -35,7 +35,7 @@ public class VerificationToken extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    User user;
+    RestUser restUser;
 
     public VerificationToken() {
         super();
@@ -43,9 +43,9 @@ public class VerificationToken extends BaseEntity {
         this.expiryDate = calculateExpiryDate(DEFAULT_EXPIRY_TIME_IN_MINS);
     }
 
-    public VerificationToken(User user, VerificationTokenType tokenType, int expirationTimeInMinutes) {
+    public VerificationToken(RestUser restUser, VerificationTokenType tokenType, int expirationTimeInMinutes) {
         this();
-        this.user = user;
+        this.restUser = restUser;
         this.tokenType = tokenType;
         this.expiryDate = calculateExpiryDate(expirationTimeInMinutes);
     }
@@ -62,12 +62,12 @@ public class VerificationToken extends BaseEntity {
         this.verified = verified;
     }
 
-    public User getUser() {
-        return user;
+    public RestUser getRestUser() {
+        return restUser;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setRestUser(RestUser restUser) {
+        this.restUser = restUser;
     }
 
     public Date getExpiryDate() {

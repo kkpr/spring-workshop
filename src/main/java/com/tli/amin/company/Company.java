@@ -2,6 +2,7 @@ package com.tli.amin.company;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -19,11 +20,11 @@ public class Company extends BaseEntity{
 	private String companyName;
 	
 	@NotEmpty
-	@Column(name="addr_line1", nullable=false)	
+	@Column(name="ADDR_LINE1", nullable=false)
 	private String addressLine1;
 	
 	@NotEmpty
-	@Column(name="addr_line2", nullable=false)	
+	@Column(name="ADDR_LINE2", nullable=false)
 	private String addressLine2;
 	
 	@NotEmpty
@@ -38,23 +39,37 @@ public class Company extends BaseEntity{
 	@Column(name="COUNTRY", nullable=false)
 	private String country;
 
-	private String profileDescription;
+	@NotEmpty
+	@Column(name="PINCODE", nullable=false)
+	private String pincode;
 
-	private BusinessStream businessStream;
+	@Column(name = "PROFILE_DESC")
+	private String profileDescription;
 
 	/**
 	 * Holds value of property date.
 	 */
-	@Column(name = "establishment_date")
+	@Column(name = "ESTABLISHMENT_DATE")
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern = "yyyy/MM/dd")
 	private Date establishmentDate;
 
+	@Column(name = "COMPANY_URL")
 	private String companyWebsiteUrl;
 
 	@NotNull
-	@Column(name="YEARLY_HIRING_NO", nullable=false)
+	@Column(name="YEARLY_HIRING_NO", nullable=true)
 	private int yearlyHiringNo;
+
+	@OneToOne
+	@JoinColumn(name="business_stream_id")
+	private BusinessStream businessStream;
+
+	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "company")
+	private Set<CompanyJobOffer> companyJobOffers;
+
+	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "company")
+	private Set<CompanyDocument> companyDocuments;
 
 	public String getCompanyName() {
 		return companyName;
@@ -143,6 +158,32 @@ public class Company extends BaseEntity{
 	public void setCompanyWebsiteUrl(String companyWebsiteUrl) {
 		this.companyWebsiteUrl = companyWebsiteUrl;
 	}
+
+	public String getPincode() {
+		return pincode;
+	}
+
+	public void setPincode(String pincode) {
+		this.pincode = pincode;
+	}
+
+	public Set<CompanyJobOffer> getCompanyJobOffers() {
+		return companyJobOffers;
+	}
+
+	public void setCompanyJobOffers(Set<CompanyJobOffer> companyJobOffers) {
+		this.companyJobOffers = companyJobOffers;
+	}
+
+	public Set<CompanyDocument> getCompanyDocuments() {
+		return companyDocuments;
+	}
+
+	public void setCompanyDocuments(Set<CompanyDocument> companyDocuments) {
+		this.companyDocuments = companyDocuments;
+	}
+
+
 
 	@Override
 	public boolean equals(Object o) {

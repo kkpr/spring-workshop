@@ -27,17 +27,17 @@ public class AuthorizationToken extends AbstractPersistable<Long> {
 
     @JoinColumn(name = "user_id")
     @OneToOne(fetch = FetchType.LAZY)
-    private User user;
+    private RestUser restUser;
 
     public AuthorizationToken() {}
 
-    public AuthorizationToken(User user) {
-        this(user, DEFAULT_TIME_TO_LIVE_IN_SECONDS);
+    public AuthorizationToken(RestUser restUser) {
+        this(restUser, DEFAULT_TIME_TO_LIVE_IN_SECONDS);
     }
 
-    public AuthorizationToken(User user, Integer timeToLiveInSeconds) {
+    public AuthorizationToken(RestUser restUser, Integer timeToLiveInSeconds) {
         this.token = UUID.randomUUID().toString();
-        this.user = user;
+        this.restUser = restUser;
         this.timeCreated = new Date();
         this.expirationDate = new Date(System.currentTimeMillis() + (timeToLiveInSeconds * 1000L));
     }
@@ -50,8 +50,8 @@ public class AuthorizationToken extends AbstractPersistable<Long> {
         return token;
     }
 
-    public User getUser() {
-        return user;
+    public RestUser getRestUser() {
+        return restUser;
     }
 
     public Date getTimeCreated() {

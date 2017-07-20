@@ -53,7 +53,7 @@ public class User extends BaseEntity{
 	@JoinTable(name = "AMIN_USER_USER_PROFILE",
              joinColumns = { @JoinColumn(name = "USER_ID") }, 
              inverseJoinColumns = { @JoinColumn(name = "USER_PROFILE_ID") })
-	private Set<UserProfile> userProfiles = new HashSet<UserProfile>();
+	private Set<UserProfile> userProfiles = new HashSet<>();
 
 	public String getSsoId() {
 		return ssoId;
@@ -131,7 +131,7 @@ public class User extends BaseEntity{
 	 */
 	@Override
 	public String toString() {
-		return "User [id=" + getId() + ", ssoId=" + ssoId + ", password=" + password
+		return "RestUser [id=" + getId() + ", ssoId=" + ssoId + ", password=" + password
 				+ ", firstName=" + firstName + ", lastName=" + lastName
 				+ ", email=" + email + "]";
 	}

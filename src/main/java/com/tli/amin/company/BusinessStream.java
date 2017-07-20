@@ -9,6 +9,7 @@ import javax.persistence.Entity;
  */
 @Entity
 public class BusinessStream extends BaseEntity{
+
     private String businessStreamName;
 
     public String getBusinessStreamName() {

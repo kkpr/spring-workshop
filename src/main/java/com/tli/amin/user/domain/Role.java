@@ -1,7 +1,7 @@
 package com.tli.amin.user.domain;
 
 /**
- * User: porter
+ * RestUser: porter
  * Date: 03/04/2012
  * Time: 13:17
  */

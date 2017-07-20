@@ -1,7 +1,7 @@
 package com.tli.amin.company;
 
 import com.tli.amin.candidate.Candidate;
-import com.tli.amin.candidate.IdentificationType;
+import com.tli.amin.enums.IdentificationType;
 
 import java.util.Date;
 import java.util.List;

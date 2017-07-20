@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Controller
 public class HomeController {
     /**
-     * This method will greet users.
+     * This method will greet user.
      */
     @RequestMapping(value = "/", method = RequestMethod.GET)
     String index() {
@@ -17,7 +17,7 @@ public class HomeController {
     }
 
     /**
-     * This method will greet users.
+     * This method will greet user.
      */
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     String home() {

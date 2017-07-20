@@ -19,8 +19,7 @@ public abstract class BaseEntity extends AbstractPersistable<Long> {
      *  All objects will have a unique UUID which allows for the decoupling from DB generated ids
      *
      */
-    @Column(length=36)
-    private String uuid;
+    private UUID uuid;
 
     @Version
     private int version;
@@ -32,15 +31,15 @@ public abstract class BaseEntity extends AbstractPersistable<Long> {
     }
     public BaseEntity(UUID guid) {
         Assert.notNull(guid, "UUID is required");
-        setUuid(guid.toString());
+        setUuid(guid);
         this.timeCreated = new Date();
     }
 
     public UUID getUuid() {
-        return UUID.fromString(uuid);
+        return uuid;
     }
 
-    public void setUuid(String uuid) {
+    public void setUuid(UUID uuid) {
         this.uuid = uuid;
     }
 

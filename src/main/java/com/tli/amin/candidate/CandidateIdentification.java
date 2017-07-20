@@ -1,5 +1,6 @@
 package com.tli.amin.candidate;
 
+import com.tli.amin.enums.IdentificationType;
 import com.tli.amin.model.BaseEntity;
 
 import javax.persistence.*;

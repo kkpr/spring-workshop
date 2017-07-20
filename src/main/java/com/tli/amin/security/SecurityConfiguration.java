@@ -41,34 +41,34 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.withUser("user").password("password").roles("USER");
 	}
 
-/*	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		http
-				.authorizeRequests()
-				.antMatchers("/", "/home").permitAll()
-				.anyRequest().authenticated()
-				.and()
-				.formLogin()
-				.loginPage("/login")
-				.permitAll()
-				.and()
-				.logout()
-				.permitAll();
-	}*/
+//	@Override
+//	protected void configure(HttpSecurity http) throws Exception {
+//		http
+//				.authorizeRequests()
+//				.antMatchers("/", "/home").permitAll()
+//				.anyRequest().authenticated()
+//				.and()
+//				.formLogin()
+//				.loginPage("/login")
+//				.permitAll()
+//				.and()
+//				.logout()
+//				.permitAll();
+//	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests().antMatchers("/public*").permitAll()
 				.antMatchers("/","/home","/_ah/*").permitAll()
-		.antMatchers("/company/*").permitAll()		
+		.antMatchers("/company/*").permitAll()
 		.antMatchers("/newuser/**").permitAll()
-		.antMatchers("/users/list").access("hasRole('USER') or hasRole('ADMIN') or hasRole('DBA')")
-		.antMatchers("/users/delete-user-*").access("hasRole('ADMIN')")
-		.antMatchers("/users/edit-user-*").access("hasRole('ADMIN') or hasRole('DBA')")
+		.antMatchers("/user/list").access("hasRole('USER') or hasRole('ADMIN') or hasRole('DBA')")
+		.antMatchers("/user/delete-user-*").access("hasRole('ADMIN')")
+		.antMatchers("/user/edit-user-*").access("hasRole('ADMIN') or hasRole('DBA')")
 		.and().formLogin().loginPage("/login").successHandler(customSuccessHandler)
 		.usernameParameter("ssoId").passwordParameter("password").and()
 		.rememberMe().rememberMeParameter("remember-me").tokenRepository(tokenRepository)
-		.tokenValiditySeconds(86400)		
+		.tokenValiditySeconds(86400)
 		.and().logout().invalidateHttpSession(true)
         .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
 		.and().csrf().and().exceptionHandling().accessDeniedPage("/accessDenied");

@@ -3,7 +3,7 @@ package com.tli.amin.user.api;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.tli.amin.user.domain.AuthorizationToken;
-import com.tli.amin.user.domain.User;
+import com.tli.amin.user.domain.RestUser;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 
@@ -46,17 +46,17 @@ public class ExternalUser implements Principal {
         this.id = userId;
     }
 
-    public ExternalUser(User user) {
-        this.id = user.getUuid().toString();
-        this.emailAddress = user.getEmailAddress();
-        this.firstName = user.getFirstName();
-        this.lastName = user.getLastName();
-        this.isVerified = user.isVerified();
-        role = user.getRole().toString();
+    public ExternalUser(RestUser restUser) {
+        this.id = restUser.getUuid().toString();
+        this.emailAddress = restUser.getEmailAddress();
+        this.firstName = restUser.getFirstName();
+        this.lastName = restUser.getLastName();
+        this.isVerified = restUser.isVerified();
+        role = restUser.getRole().toString();
     }
 
-    public ExternalUser(User user, AuthorizationToken activeSession) {
-        this(user);
+    public ExternalUser(RestUser restUser, AuthorizationToken activeSession) {
+        this(restUser);
     }
 
     public String getFirstName() {

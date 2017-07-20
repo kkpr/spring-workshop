@@ -4,7 +4,7 @@ import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- * User: porter
+ * RestUser: porter
  * Date: 18/05/2012
  * Time: 09:59
  */
