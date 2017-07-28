@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <title>Login securely to AmIn</title>
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
@@ -15,9 +15,6 @@
 
 <form action="#" th:action="@{/newuser}" th:object="${user}" class="form-horizontal" id="add-user-form" method="post">
     <div class="form-group has-feedback">
-        <input type="text" th:field="*{firstName}" />
-        <input type="text" th:field="*{lastName}" />
-
         <input
                 th:replace="~{fragments/inputField :: input ('First Name', 'firstName')}" />
         <input

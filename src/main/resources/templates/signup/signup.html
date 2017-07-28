@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Signup</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <div th:replace="~{fragments/header :: header-css}"/>
+</head>
+<body>
+<div class="container">
+<form class="form-narrow form-horizontal" method="post" th:action="@{/signup}" th:object="${signupForm}" th:fragment="signupForm">
+    <!--/* Show general error message when form contains errors */-->
+    <th:block th:if="${#fields.hasErrors('${signupForm.*}')}">
+        <div th:replace="fragments/alert :: alert (type='danger', message='Form contains errors. Please try again.')">Alert</div>
+    </th:block>
+    <fieldset>
+        <legend>Please Register with your company email address.</legend>
+        <div class="form-group" th:classappend="${#fields.hasErrors('firstname')}? 'has-error'">
+            <label for="firstname" class="col-lg-2 control-label">First Name</label>
+            <div class="col-lg-10">
+                <input type="text" class="form-control" id="firstname" placeholder="First Name" th:field="*{firstname}" />
+                <span class="help-block" th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}">Incorrect firstname</span>
+            </div>
+        </div>
+        <div class="form-group" th:classappend="${#fields.hasErrors('lastname')}? 'has-error'">
+            <label for="lastname" class="col-lg-2 control-label">Last Name</label>
+            <div class="col-lg-10">
+                <input type="text" class="form-control" id="lastname" placeholder="Last Name" th:field="*{lastname}" />
+                <span class="help-block" th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}">Incorrect lastname</span>
+            </div>
+        </div>
+        <div class="form-group" th:classappend="${#fields.hasErrors('companyname')}? 'has-error'">
+            <label for="companyname" class="col-lg-2 control-label">Company Name</label>
+            <div class="col-lg-10">
+                <input type="text" class="form-control" id="companyname" placeholder="Company Name" th:field="*{companyname}" />
+                <span class="help-block" th:if="${#fields.hasErrors('companyname')}" th:errors="*{companyname}">Incorrect Company Name</span>
+            </div>
+        </div>
+        <div class="form-group" th:classappend="${#fields.hasErrors('designation')}? 'has-error'">
+            <label for="designation" class="col-lg-2 control-label">Designation</label>
+            <div class="col-lg-10">
+                <input type="text" class="form-control" id="designation" placeholder="Designation" th:field="*{designation}" />
+                <span class="help-block" th:if="${#fields.hasErrors('designation')}" th:errors="*{designation}">Incorrect Designation</span>
+            </div>
+        </div>
+        <div class="form-group" th:classappend="${#fields.hasErrors('phonenumber')}? 'has-error'">
+            <label for="phonenumber" class="col-lg-2 control-label">Phone Number</label>
+            <div class="col-lg-10">
+                <input type="text" class="form-control" id="phonenumber" placeholder="Phone Number" th:field="*{phonenumber}" />
+                <span class="help-block" th:if="${#fields.hasErrors('phonenumber')}" th:errors="*{phonenumber}">Incorrect Phone number</span>
+            </div>
+        </div>
+        <div class="form-group" th:classappend="${#fields.hasErrors('email')}? 'has-error'">
+            <label for="email" class="col-lg-2 control-label">Email</label>
+            <div class="col-lg-10">
+                <input type="text" class="form-control" id="email" placeholder="Email address" th:field="*{email}" />
+                <span class="help-block" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Incorrect email</span>
+            </div>
+        </div>
+        <div class="form-group" th:classappend="${#fields.hasErrors('password')}? 'has-error'">
+            <label for="password" class="col-lg-2 control-label">Password</label>
+            <div class="col-lg-10">
+                <input type="password" class="form-control" id="password" placeholder="Password" th:field="*{password}"/>
+                <span class="help-block" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Incorrect password</span>
+            </div>
+        </div>
+        <div class="form-group" th:classappend="${#fields.hasErrors('confirmPassword')}? 'has-error'">
+            <label for="confirmPassword" class="col-lg-2 control-label">Confirm Password</label>
+            <div class="col-lg-10">
+                <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password" th:field="*{confirmPassword}"/>
+                <span class="help-block" th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}">Password Not matched</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-lg-offset-2 col-lg-10">
+                <button type="submit" class="btn btn-default" onclick="checkpasswords()">Sign up</button> <!--onclick="checkpasswords()" -->
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-lg-offset-2 col-lg-10">
+                <p>Already have an account? <a href="signin" th:href="@{/signin}">Sign In</a></p>
+            </div>
+        </div>
+    </fieldset>
+</form>
+</div>
+<script th:inline="javascript" type="text/javascript">
+function checkpasswords() {
+    var pass1 = document.getElementById("password1").value;
+    var pass2 = document.getElementById("password2").value;
+    var ok = true;
+    if (pass1 != pass2) {
+        //alert("Passwords Do not match");
+        document.getElementById("pass1").style.borderColor = "#E34234";
+        document.getElementById("pass2").style.borderColor = "#E34234";
+        ok = false;
+    }
+    return ok;
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:fragment="header-css">
+        <!-- this is header-css -->
+        <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+        <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+        <script th:src="@{/webjars/jquery-ui/jquery-ui.min.js}"></script>
+        <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    </div>
+</head>
+<body>
+<div th:fragment="header">
+    <!-- this is header -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#" th:href="@{/}">AmIn</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li th:classappend="${module == 'home' ? 'active' : ''}">
+                        <a href="#" th:href="@{/}">Home</a>
+                    </li>
+                    <li th:classappend="${module == 'features' ? 'active' : ''}">
+                        <a href="#" th:href="@{/features}">Features</a>
+                    </li>
+                    <li th:classappend="${module == 'pricing' ? 'active' : ''}">
+                        <a href="#" th:href="@{/pricing}">Pricing</a>
+                    </li>
+                    <li th:classappend="${module == 'support' ? 'active' : ''}">
+                        <a href="#" th:href="@{/support}">Support</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li th:if="${#authorization.expression('!isAuthenticated()')}">
+                        <a href="/signin" th:href="@{/signin}">
+                            <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>&nbsp;Log in
+                        </a>
+                    </li>
+                    <li th:if="${#authorization.expression('!isAuthenticated()')}">
+                        <a id="signup">
+                            <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>&nbsp;Sign up
+                        </a>
+                    </li>
+                    <li th:if="${#authorization.expression('isAuthenticated()')}">
+                        <a href="/logout" th:href="@{#}" onclick="$('#form').submit();">
+                            <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp;Logout
+                        </a>
+                        <form style="visibility: hidden" id="form" method="post" action="#"
+                              th:action="@{/logout}"></form>
+                    </li>
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    </nav>
+</div>
+</body>
+</html>

@@ -11,7 +11,7 @@ import java.util.List;
 public class ApiError {
     private HttpStatus status; //the HTTP status code
     private String message; //the error message associated with exception
-    private List<String> errors; //List of constructed error messages
+    private List<String> errors; //List of constructed error i18n
 
     public HttpStatus getStatus() {
         return status;

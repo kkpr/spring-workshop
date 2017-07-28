@@ -41,11 +41,11 @@ public class UserController {
 	@Autowired
 	MessageSource messageSource;
 
-	@Autowired
-	PersistentTokenBasedRememberMeServices persistentTokenBasedRememberMeServices;
-	
-	@Autowired
-	AuthenticationTrustResolver authenticationTrustResolver;
+//	@Autowired
+//	PersistentTokenBasedRememberMeServices persistentTokenBasedRememberMeServices;
+//
+//	@Autowired
+//	AuthenticationTrustResolver authenticationTrustResolver;
 
 
 	
@@ -104,7 +104,7 @@ public class UserController {
 		 * and applying it on field [sso] of Model class [RestUser].
 		 * 
 		 * Below mentioned peace of code [if block] is to demonstrate that you can fill custom errors outside the validation
-		 * framework as well while still using internationalized messages.
+		 * framework as well while still using internationalized i18n.
 		 * 
 		 */
 		if(!userService.isUserSSOUnique(user.getId(), user.getSsoId())){

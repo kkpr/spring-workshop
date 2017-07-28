@@ -5,10 +5,9 @@
     <div th:replace="fragments/header :: header-css"></div>
 </head>
 <body>
-<div th:replace="fragments/header :: header"/>
 <div class="container">
     <div th:replace="fragments/alert :: alert (type='danger', message=${errorMessage})">Error: Error</div>
-    <div th:include="fragments/footer :: footer">&copy; 2017 The Static Templates</div>
+    <div th:replace="fragments/footer :: footer">&copy; 2017 The Static Templates</div>
 </div>
 </body>
 </html>

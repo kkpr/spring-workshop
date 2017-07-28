@@ -10,6 +10,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices;
+import org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,25 +33,25 @@ public class LoginController {
 	@Autowired
 	MessageSource messageSource;
 
-	@Autowired
-	PersistentTokenBasedRememberMeServices persistentTokenBasedRememberMeServices;
+//	@Autowired
+//	TokenBasedRememberMeServices persistentTokenBasedRememberMeServices;
 	
-	@Autowired
-	AuthenticationTrustResolver authenticationTrustResolver;
-	
+//	@Autowired
+//	AuthenticationTrustResolver authenticationTrustResolver;
+//
 
 	/**
 	 * This method handles login GET requests.
 	 * If user is already logged-in and tries to goto login page again, will be redirected to list page.
 	 */
-	@RequestMapping(value = "/login")
-	public String loginPage() {
-		if (isCurrentAuthenticationAnonymous()) {
-			return "login";
-	    } else {
-	    	return "redirect:/user/list";
-	    }
-	}
+//	@RequestMapping(value = "/login")
+//	public String loginPage() {
+//		if (isCurrentAuthenticationAnonymous()) {
+//			return "login";
+//	    } else {
+//	    	return "redirect:/user/list";
+//	    }
+//	}
 	
 	/**
 	 * This method handles logout requests.
@@ -61,7 +62,7 @@ public class LoginController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		if (auth != null){    
 			//new SecurityContextLogoutHandler().logout(request, response, auth);
-			persistentTokenBasedRememberMeServices.logout(request, response, auth);
+			//persistentTokenBasedRememberMeServices.logout(request, response, auth);
 			SecurityContextHolder.getContext().setAuthentication(null);
 		}			
         return "redirect:/login?logout";		
@@ -94,8 +95,8 @@ public class LoginController {
 	/**
 	 * This method returns true if user is already authenticated [logged-in], else false.
 	 */
-	private boolean isCurrentAuthenticationAnonymous() {
-	    final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-	    return authenticationTrustResolver.isAnonymous(authentication);
-	}
+//	private boolean isCurrentAuthenticationAnonymous() {
+//	    final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//	    return authenticationTrustResolver.isAnonymous(authentication);
+//	}
 }
